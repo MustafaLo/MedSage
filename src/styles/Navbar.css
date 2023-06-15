@@ -1,3 +1,48 @@
 .navbar{
     background-color: #5FEE92;
+    height: 100px;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.navbar a{
+    text-decoration: none;
+    color: black;
+    margin-right: 30px;
+}
+
+.navbar a:hover{
+    text-decoration: underline;
+}
+
+.navbar h1{
+    padding: 20px;
+    margin: 10px;
+    margin-left: 125px;
+    font-weight: bold;
+}
+
+.navbar ul{
+    list-style-type: none;
+    display: flex;
+    margin-right: 30px;
+    align-items: first baseline;
+}
+
+.logout{
+    font-family: 'Poppins';
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 35px;
+    cursor: pointer; 
+}
+
+.logout:hover{
+    transform:scale(0.95);
+    opacity: 0.5;
 }

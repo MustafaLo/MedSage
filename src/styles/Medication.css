@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+.medication{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 70px;
+}
+
+.medication-header{
+    margin: 0 95px;
+    display: flex;
+
+}
+
+.medication-name{
+    border: 0;
+    font-family: 'Poppins';
+    font-size: 20px;
+    margin: 0 15px;
+    width: 100%;
+}
+
+.medication-name:focus{
+    outline: none;
+}
+
+.medication-item{
+    background-color: #7EFFAF;
+    color: black;
+    border-radius: 35px;
+    padding: 20px;
+    margin: 0 85px;
+
+    position: relative;
+    height: 400px;
+    width: 450px;
+
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.days{
+    margin: 35px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.days-header{
+    font-weight: bold;
+}
+.day{
+    width: 25px;
+    border: none;
+    background-color: #7EFFAF;
+    font-family: 'Poppins';
+    cursor: pointer;
+}
+
+
+.day:hover{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.day-clicked{
+    width: 25px;
+    border: none;
+    font-family: 'Poppins';
+    background-color: black;
+    color: white;
+    cursor: pointer;
+}
+
+.times{
+    margin: 35px 0;
+    display: flex;
+    align-items: first baseline;
+}
+
+.times-header{
+    font-weight: bold;
+}
+
+.time-container{
+    display: flex;
+    margin-left: 30px;
+}
+
+
+.notes{
+    display: flex;
+    align-items: first baseline;
+    margin: 35px 0;
+}
+
+.notes-header{
+    font-weight: bold;
+}
+
+.note{
+    margin: 0 25px;
+    border: 0;
+    background:#7EFFAF;
+    width: 100%;
+    font-family: 'Poppins';
+    resize: none;
+}
+
+.note:focus{
+    outline: none;
+}
