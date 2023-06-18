@@ -1,8 +1,9 @@
 import '../styles/Medication.css'
-import {useState, useEffect} from 'react'
+import {useState, useEffect, forwardRef, useImperativeHandle} from 'react'
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-const Medication = ({medindex, medication, medicationList, setMedicationList}) => {
+const Medication = forwardRef(({medindex, medication, medicationList, setMedicationList}, _ref) => {
+
     
     const MUI_BLACK_THEME = createTheme({ palette: { primary: { main: "#000000" } } });
 
@@ -16,17 +17,18 @@ const Medication = ({medindex, medication, medicationList, setMedicationList}) =
         'Su': 'day'
     })
 
-   const [tempMedicationTimes, setTempMedicationTimes] = useState([])
+   const [tempMedicationTimes, setTempMedicationTimes] = useState([''])
+   const [deleteTimeHoverState, setDeleteTimeHoverState] = useState([false, false, false, false])
 
-    useEffect(() => {
-        //Setting the status (clicked or unclicked) for the days of medication
-        medication.days.map((day) => dayClick[day] = 'day-clicked')
-        setTempMedicationTimes([...tempMedicationTimes, ''])
-    }, [])
+   useImperativeHandle(_ref, () => ({
+        getSetDayClickStates: () => {
+            return setDayClick
+        },
+        getSetTempMedicationTimeStates: () => {
+            return setTempMedicationTimes
+        }
+   }))
 
-    useEffect(() => {
-        console.log(tempMedicationTimes)
-    }, [medicationList])
 
 
     const handleMedicationName = (e) => {
@@ -66,8 +68,6 @@ const Medication = ({medindex, medication, medicationList, setMedicationList}) =
         setMedicationList((prevMedicationList) => 
             prevMedicationList.map((med, index) => {
                 if(index == medindex){
-                    console.log(`listlength ${med.times.length}`)
-                    console.log(`timeindex: ${timeIndex}`)
                     if(timeIndex < med.times.length){
                         return{...med, times:med.times.map((time, index) => index === timeIndex ? newTime : time)}
                     }
@@ -81,8 +81,32 @@ const Medication = ({medindex, medication, medicationList, setMedicationList}) =
 
         //This is to ensure users cannot put more than 4 times
         if(tempMedicationTimes.length < 4 && (timeIndex + 1) >= tempMedicationTimes.length){
-            setTempMedicationTimes([...tempMedicationTimes, ''])
+            const temp = tempMedicationTimes.map((time, index) => index == timeIndex ? newTime : time)
+            setTempMedicationTimes([...temp, ''])
         }
+    }
+
+    const handleDeleteMedicationTime = (tindex) => {
+        setMedicationList((prevMedicationList) => 
+            prevMedicationList.map((med, index) => {
+                if(index == medindex){
+                    return {...med, times: med.times.filter((time,key) => key !== tindex)}
+                }
+
+                return med
+            })
+        )
+
+        console.log(tindex)
+        console.log(tempMedicationTimes)
+
+        if(tempMedicationTimes.length > 1){
+            setTempMedicationTimes(tempMedicationTimes.filter((time, key) => key !== tindex))
+        }
+        else{
+            setTempMedicationTimes([''])
+        }
+
     }
 
     const handleMedicationNote = (newNote) => {
@@ -138,24 +162,28 @@ const Medication = ({medindex, medication, medicationList, setMedicationList}) =
                     <div className="time-container">
                         {tempMedicationTimes.map((time, index) => 
                             <ThemeProvider theme={MUI_BLACK_THEME}>
-                                <MobileTimePicker 
-                                    className='time'
-                                    slotProps={{ 
-                                        textField: {  
-                                        InputProps: { 
-                                            sx:{fontFamily: 'Poppins', backgroundColor: '#7EFFAF', width: 85},
-                                            disableUnderline: true }, 
-                                        variant: 'standard' 
-                                        },
+                                <div 
+                                onMouseOut={() => setDeleteTimeHoverState(deleteTimeHoverState.map((state, key) => false))} 
+                                onMouseOver={() => setDeleteTimeHoverState(deleteTimeHoverState.map((state, key) => key === index ? true : false))} className="time">
+                                    <MobileTimePicker 
+                                        slotProps={{ 
+                                            textField: {  
+                                            InputProps: { 
+                                                sx:{fontFamily: 'Poppins', backgroundColor: '#7EFFAF', width: 85},
+                                                disableUnderline: true }, 
+                                            variant: 'standard' 
+                                            },
 
-                                        toolbar:{
-                                            sx: {backgroundColor: '#7EFFAF'}
-                                        }
-                                    }}
+                                            toolbar:{
+                                                sx: {backgroundColor: '#7EFFAF'}
+                                            }
+                                        }}
+                                        value={time}
+                                        onAccept={(newTime) => handleMedicationTimes(newTime, index)}
+                                        />
+                                    <button onClick={() => handleDeleteMedicationTime(index)} className="delete-time-btn" id={'delbtn' + index} style={deleteTimeHoverState[index] ? {display:'block'} : {display:'none'}}>Delete</button>
 
-                                    value={time}
-                                    onAccept={(newTime) => handleMedicationTimes(newTime, index)}
-                                    />
+                                </div>
                             </ThemeProvider>
                         )}
                     </div>
@@ -169,6 +197,6 @@ const Medication = ({medindex, medication, medicationList, setMedicationList}) =
         </div>
         
     )
-}
+})
 
 export default Medication
