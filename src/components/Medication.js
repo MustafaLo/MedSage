@@ -2,7 +2,7 @@ import '../styles/Medication.css'
 import {useState, useEffect, forwardRef, useImperativeHandle} from 'react'
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-const Medication = forwardRef(({medindex, medication, medicationList, setMedicationList}, _ref) => {
+const Medication = forwardRef(({medID, medicationList, setMedicationList}, _ref) => {
 
     
     const MUI_BLACK_THEME = createTheme({ palette: { primary: { main: "#000000" } } });
@@ -20,36 +20,44 @@ const Medication = forwardRef(({medindex, medication, medicationList, setMedicat
    const [tempMedicationTimes, setTempMedicationTimes] = useState([''])
    const [deleteTimeHoverState, setDeleteTimeHoverState] = useState([false, false, false, false])
 
+   const [updated, setUpdated] = useState(false)
+
+
+
+
+  /*This is in order to check which medication the user has updated. If the user updates a medicine,
+    I pass the updated state along with "medID" so that in my parent component I can appropiately 
+    update the right medicine 
+  */
    useImperativeHandle(_ref, () => ({
-        getSetDayClickStates: () => {
-            return setDayClick
-        },
-        getSetTempMedicationTimeStates: () => {
-            return setTempMedicationTimes
+        getUpdateMedInformation: () => {
+            return {updated, setUpdated, medID}
         }
-   }))
+   }), [medID, updated])
 
 
 
     const handleMedicationName = (e) => {
         e.preventDefault()
         setMedicationList((prevMedicationList) => 
-            prevMedicationList.map((med, index) => {
-                if(index === medindex){
+            prevMedicationList.map((med) => {
+                if(med.id === medID){
                     return {...med, name: e.target.value}
                 }
 
                 return med
             })
         )
+
+        setUpdated(true)
+
     }
 
     const handleMedicationDays = (id) => {
         setMedicationList((prevMedicationList) => 
-            prevMedicationList.map((med, index) => {
-                if(index === medindex){
+            prevMedicationList.map((med) => {
+                if(med.id === medID){
                     const status = handleDayStatus(id)
-
                     if(status === 'ADD'){
                         return {...med, days: [...med.days, id]}
                     }
@@ -62,12 +70,14 @@ const Medication = forwardRef(({medindex, medication, medicationList, setMedicat
             })
         )
 
+        setUpdated(true)
+
     }
 
     const handleMedicationTimes = (newTime, timeIndex) => {
         setMedicationList((prevMedicationList) => 
-            prevMedicationList.map((med, index) => {
-                if(index == medindex){
+            prevMedicationList.map((med) => {
+                if(med.id == medID){
                     if(timeIndex < med.times.length){
                         return{...med, times:med.times.map((time, index) => index === timeIndex ? newTime : time)}
                     }
@@ -84,12 +94,15 @@ const Medication = forwardRef(({medindex, medication, medicationList, setMedicat
             const temp = tempMedicationTimes.map((time, index) => index == timeIndex ? newTime : time)
             setTempMedicationTimes([...temp, ''])
         }
+
+        setUpdated(true)
     }
+
 
     const handleDeleteMedicationTime = (tindex) => {
         setMedicationList((prevMedicationList) => 
-            prevMedicationList.map((med, index) => {
-                if(index == medindex){
+            prevMedicationList.map((med) => {
+                if(med.id == medID){
                     return {...med, times: med.times.filter((time,key) => key !== tindex)}
                 }
 
@@ -107,31 +120,61 @@ const Medication = forwardRef(({medindex, medication, medicationList, setMedicat
             setTempMedicationTimes([''])
         }
 
+        setUpdated(true)
+
     }
 
     const handleMedicationNote = (newNote) => {
         setMedicationList((prevMedicationList) => 
             prevMedicationList.map((med, index) => {
-                if(index == medindex){
+                if(med.id == medID){
                     return {...med, note: newNote}
                 }
 
                 return med
             })
         )
+
+        setUpdated(true)
     } 
+
+    const updateDayClickStatus = () => {
+        const medication = medicationList.find(med => med.id == medID)
+        Object.keys(dayClick).forEach((day) => {
+            const updatedDayClick = medication.days.includes(day) ? 'day-clicked' : 'day';
+            setDayClick((prevDayClick) => ({
+              ...prevDayClick,
+              [day]: updatedDayClick
+            }));
+          });
+    }
+
+    const updateTimeClickStatus = () => {
+        const times = medicationList.find(med => med.id == medID).times
+        setTempMedicationTimes([...times, ''])
+    }
 
     const handleDayStatus = (id) => {
         console.log(dayClick[id])
         if(dayClick[id] === 'day'){
-            setDayClick({...dayClick, [id]: 'day-clicked'})
+            //setDayClick({...dayClick, [id]: 'day-clicked'})
             return 'ADD'
         }
         else{
-            setDayClick({...dayClick, [id]: 'day'})
+            //setDayClick({...dayClick, [id]: 'day'})
             return 'REMOVE'
         }
     }
+
+    useEffect(() => {
+        updateDayClickStatus()
+    }, [medicationList.find(med => med.id == medID).days])
+
+    useEffect(() => {
+        updateTimeClickStatus()
+    }, [medicationList.find(med => med.id == medID).times])
+
+
 
     return(
         <div className="medication">
@@ -141,7 +184,7 @@ const Medication = forwardRef(({medindex, medication, medicationList, setMedicat
                     type="text" 
                     placeholder='Enter Your Medication Name' 
                     className="medication-name" 
-                    value={medication.name} 
+                    value={medicationList.find(med => med.id == medID).name} 
                     onChange={(e) => handleMedicationName(e)} />
             </div>
             <div className="medication-item">
@@ -162,9 +205,9 @@ const Medication = forwardRef(({medindex, medication, medicationList, setMedicat
                     <div className="time-container">
                         {tempMedicationTimes.map((time, index) => 
                             <ThemeProvider theme={MUI_BLACK_THEME}>
-                                <div 
+                                <div className="time"
                                 onMouseOut={() => setDeleteTimeHoverState(deleteTimeHoverState.map((state, key) => false))} 
-                                onMouseOver={() => setDeleteTimeHoverState(deleteTimeHoverState.map((state, key) => key === index ? true : false))} className="time">
+                                onMouseOver={() => setDeleteTimeHoverState(deleteTimeHoverState.map((state, key) => key === index ? true : false))} >
                                     <MobileTimePicker 
                                         slotProps={{ 
                                             textField: {  
@@ -179,7 +222,7 @@ const Medication = forwardRef(({medindex, medication, medicationList, setMedicat
                                             }
                                         }}
                                         value={time}
-                                        onAccept={(newTime) => handleMedicationTimes(newTime, index)}
+                                        onAccept={(newTime) => handleMedicationTimes(newTime.$d, index)}
                                         />
                                     <button onClick={() => handleDeleteMedicationTime(index)} className="delete-time-btn" id={'delbtn' + index} style={deleteTimeHoverState[index] ? {display:'block'} : {display:'none'}}>Delete</button>
 
@@ -191,7 +234,7 @@ const Medication = forwardRef(({medindex, medication, medicationList, setMedicat
             </div>
             <div className="notes">
                 <p className='notes-header'>NOTES</p>
-                <textarea className="note" rows="7"placeholder='Start Typing' value={medication.note} onChange={(e) => handleMedicationNote(e.target.value)}></textarea>
+                <textarea className="note" rows="7"placeholder='Start Typing' value={medicationList.find(med => med.id == medID).note} onChange={(e) => handleMedicationNote(e.target.value)}></textarea>
             </div>
             </div>
         </div>

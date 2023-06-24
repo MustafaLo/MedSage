@@ -4,6 +4,7 @@ import Login from "./components/Login"
 import Builder from './components/Builder';
 import Navbar from './components/Navbar';
 import { AuthProvider } from './contexts/AuthContext';
+import { DbProvider } from './contexts/DbContext';
 import PrivateRoutes from './components/PrivateRoutes';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
@@ -14,6 +15,7 @@ function App() {
     <div className='App'>
         <Router>
           <AuthProvider>
+            <DbProvider>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <Routes>
                 <Route element={<PrivateRoutes/>}>
@@ -22,6 +24,7 @@ function App() {
                 <Route path='/' element={<Login/> }></Route>
               </Routes>
             </LocalizationProvider>
+            </DbProvider>
           </AuthProvider>
         </Router>
     </div>

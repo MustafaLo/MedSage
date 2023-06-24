@@ -1,6 +1,7 @@
 import '../styles/Login.css'
 import {useEffect, useState} from 'react'
 import { useAuth } from '../contexts/AuthContext';
+import {useDb} from '../contexts/DbContext'
 import {useNavigate} from 'react-router-dom'
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -13,7 +14,11 @@ const Login = () => {
     const [isRegistering, setIsRegistering] = useState(false);
 
     //Pulling function from useAuth context
-    const {signup, login} = useAuth()
+    const {signup, login, currentUser} = useAuth()
+
+    const {addUser} = useDb()
+
+
     const[error, setError] = useState('')
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
@@ -30,6 +35,7 @@ const Login = () => {
             } catch (err){
                 setError(err.message)
             }
+         
         }
     }
 
