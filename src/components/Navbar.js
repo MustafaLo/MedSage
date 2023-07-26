@@ -1,4 +1,5 @@
 import '../styles/Navbar.css'
+import logo from '../styles/logo.png'
 import {  Link } from "react-router-dom";
 import {useState} from 'react'
 import { useAuth } from '../contexts/AuthContext';
@@ -23,6 +24,7 @@ const Navbar = () => {
     return(
         <div className="navbar">
             <div className="logo">
+                <img src={logo} alt="" />
                 <h1>MedSage</h1>
             </div>
             <nav>
@@ -31,7 +33,7 @@ const Navbar = () => {
                         <Link to="/builder"><a href="">BUILDER</a></Link>
                     </li>
                     <li>
-                        <Link to="/schedules"><a href="">SCHEDULES</a></Link>
+                        <Link to="/schedule"><a href="">SCHEDULES</a></Link>
                     </li>
 
                     <button className='logout' onClick={handleSignOut}>LOGOUT</button>

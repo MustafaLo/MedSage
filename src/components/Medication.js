@@ -2,6 +2,7 @@ import '../styles/Medication.css'
 import {useState, useEffect, forwardRef, useImperativeHandle} from 'react'
 import { MobileTimePicker } from '@mui/x-date-pickers/MobileTimePicker';
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+
 const Medication = forwardRef(({medID, medicationList, setMedicationList}, _ref) => {
 
     
@@ -21,7 +22,6 @@ const Medication = forwardRef(({medID, medicationList, setMedicationList}, _ref)
    const [deleteTimeHoverState, setDeleteTimeHoverState] = useState([false, false, false, false])
 
    const [updated, setUpdated] = useState(false)
-
 
 
 
@@ -90,10 +90,13 @@ const Medication = forwardRef(({medID, medicationList, setMedicationList}, _ref)
         )
 
         //This is to ensure users cannot put more than 4 times
+        /*
         if(tempMedicationTimes.length < 4 && (timeIndex + 1) >= tempMedicationTimes.length){
             const temp = tempMedicationTimes.map((time, index) => index == timeIndex ? newTime : time)
             setTempMedicationTimes([...temp, ''])
         }
+        */
+        
 
         setUpdated(true)
     }
@@ -149,10 +152,26 @@ const Medication = forwardRef(({medID, medicationList, setMedicationList}, _ref)
           });
     }
 
+
     const updateTimeClickStatus = () => {
         const times = medicationList.find(med => med.id == medID).times
-        setTempMedicationTimes([...times, ''])
+
+        if(times.length == 4){
+            setTempMedicationTimes([...times])
+        }
+        else{
+            setTempMedicationTimes([...times, ''])
+        }
+
     }
+
+    useEffect(() => {
+        console.log(tempMedicationTimes)
+
+    }, [tempMedicationTimes])
+
+
+
 
     const handleDayStatus = (id) => {
         console.log(dayClick[id])
@@ -169,6 +188,12 @@ const Medication = forwardRef(({medID, medicationList, setMedicationList}, _ref)
     useEffect(() => {
         updateDayClickStatus()
     }, [medicationList.find(med => med.id == medID).days])
+
+    /*
+    useEffect(() => {
+        updateTimeClickStatus()
+    }, [medicationList.find(med => med.id == medID).times])
+    */
 
     useEffect(() => {
         updateTimeClickStatus()
@@ -212,7 +237,7 @@ const Medication = forwardRef(({medID, medicationList, setMedicationList}, _ref)
                                         slotProps={{ 
                                             textField: {  
                                             InputProps: { 
-                                                sx:{fontFamily: 'Poppins', backgroundColor: '#7EFFAF', width: 85},
+                                                sx:{fontFamily: 'Poppins', backgroundColor: '#7EFFAF', width:88},
                                                 disableUnderline: true }, 
                                             variant: 'standard' 
                                             },
@@ -222,7 +247,7 @@ const Medication = forwardRef(({medID, medicationList, setMedicationList}, _ref)
                                             }
                                         }}
                                         value={time}
-                                        onAccept={(newTime) => handleMedicationTimes(newTime.$d, index)}
+                                        onAccept={(newTime) => handleMedicationTimes(newTime, index)}
                                         />
                                     <button onClick={() => handleDeleteMedicationTime(index)} className="delete-time-btn" id={'delbtn' + index} style={deleteTimeHoverState[index] ? {display:'block'} : {display:'none'}}>Delete</button>
 

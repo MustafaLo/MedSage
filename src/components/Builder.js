@@ -7,6 +7,7 @@ import uuid from 'react-uuid'
 import '../styles/Builder.css'
 import {useDb} from '../contexts/DbContext'
 import { useAuth } from '../contexts/AuthContext';
+import dayjs from 'dayjs'
 
 const Builder = () => {
 
@@ -110,7 +111,9 @@ const Builder = () => {
               setDelMedHoverState((prevState) => ({...prevState, [medication.id]:false}))
               medication.name = data.name;
               medication.days = data.days; 
-              medication.times = data.times.map((time) => time.toDate());
+              medication.times = data.times.map((time) => dayjs.unix(time.seconds));
+              //medication.times = data.times
+
               medication.note = data.note;
               return medication;
             });

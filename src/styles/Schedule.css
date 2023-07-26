@@ -1,0 +1,51 @@
+.schedule{
+    font-family: 'Poppins';
+}
+
+.calendar{
+    width: 75%;
+    margin-left: 200px;
+    margin-top: 75px;
+    padding: 50px;
+    font-family: 'Poppins';
+    
+    border: 1px thin black;
+
+    border-radius: 45px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.calendar-title{
+    border: 0;
+    font-family: 'Poppins';
+    width: 100%;
+    text-align: center;
+    margin: 30px 0;
+    font-size: 50px;
+}
+
+.calendar-title:focus{
+    outline: none;
+}
+
+.schedule-header{
+    font-style: light;
+    font-size: 50px;
+    font-weight: normal;
+    text-align: center;
+    margin: 10px;
+}
+
+:root{
+    --fc-border-color:black;
+}
+
+
+
+
+
+
+
+
+
+ 

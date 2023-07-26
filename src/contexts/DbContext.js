@@ -35,7 +35,7 @@ export function DbProvider({children}){
             id: medID,
             name: medication.name,
             days: medication.days,
-            times: medication.times,
+            times: medication.times.map((time) => time.$d),
             note: medication.note,
         })
     }
