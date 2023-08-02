@@ -33,7 +33,7 @@ const Navbar = () => {
                         <Link to="/builder"><a href="">BUILDER</a></Link>
                     </li>
                     <li>
-                        <Link to="/schedule"><a href="">SCHEDULES</a></Link>
+                        <Link to="/schedule"><a href="">SCHEDULE</a></Link>
                     </li>
 
                     <button className='logout' onClick={handleSignOut}>LOGOUT</button>

@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+.landing{
+    font-family: 'Poppins', 'sans-serif';
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+}
+
+
+
+.content1{
+    width: 100%;
+    background-color: #7EFFAF;
+    clip-path: polygon(0 0%, 100% 0%, calc(100% - 10rem) 100%, 0% 100%);
+    margin-bottom: 85px;
+
+
+}
+
+
+.content2{
+    width: 55%;
+    background-color: black;
+    clip-path: polygon(10rem 0%, 100% 0%,  100% 100%, 0% 100%);
+    margin-left: -10rem;
+    margin-bottom: 85px;
+}
+
+.logo{
+    margin-top: 20px;
+    color: black;
+}
+
+.logo h1{
+    padding: 20px;
+    font-size: 25px;
+}
+
+.description{
+    margin-top: 35px;
+    margin-left: 85px;
+}
+
+.landing-header{
+    font-family: 'Playfair Display', serif;
+    font-weight: lighter;
+    font-size: 85px;
+
+    animation: fadeInAnimation ease 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.get-started-btn{
+    margin-top: 125px;
+    margin-left: 85px;
+    background-color: black;
+    padding: 10px 35px;
+    border: 1px solid black;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'Poppins';
+    font-size: 20px;
+    color: white;
+
+    opacity: 0;
+    animation: fadeInAnimation ease 3s;
+    animation-delay: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+
+
+
+}
+
+a {
+    text-decoration: none;
+}
+
+.get-started-btn a {
+    color: white;
+}
+
+/* Pulse Grow Taken from: https://github.com/IanLunn/Hover */
+.hvr-grow {
+    display: inline-block;
+    vertical-align: middle;
+    transform: translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    backface-visibility: hidden;
+    -moz-osx-font-smoothing: grayscale;
+    transition-duration: 0.3s;
+    transition-property: transform;
+}
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+    transform: scale(1.1);
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+     }
+}

@@ -1,5 +1,4 @@
 import {useEffect, useState, useRef} from 'react'
-import {useNavigate} from 'react-router-dom'
 import Medication from './Medication'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faX} from '@fortawesome/free-solid-svg-icons';
@@ -111,10 +110,9 @@ const Builder = () => {
               setDelMedHoverState((prevState) => ({...prevState, [medication.id]:false}))
               medication.name = data.name;
               medication.days = data.days; 
-              medication.times = data.times.map((time) => dayjs.unix(time.seconds));
-              //medication.times = data.times
-
+              medication.times = data.times.map((time) => dayjs.unix(time.seconds))
               medication.note = data.note;
+              
               return medication;
             });
             setMedicationList(medicationObjects)

@@ -5,6 +5,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-family: 'Poppins';
 
 }
 
@@ -32,7 +33,7 @@
 
 .logo{
     display: flex;
-    margin-left: 85lpx;
+    margin-left: 85px;
     cursor: pointer;
 }
 

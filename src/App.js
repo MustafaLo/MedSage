@@ -4,6 +4,7 @@ import Login from "./components/Login"
 import Builder from './components/Builder';
 import Navbar from './components/Navbar';
 import Schedule from './components/Schedule';
+import Home from './components/Home'
 import { AuthProvider } from './contexts/AuthContext';
 import { DbProvider } from './contexts/DbContext';
 import PrivateRoutes from './components/PrivateRoutes';
@@ -23,7 +24,8 @@ function App() {
                   <Route  path='/builder' element={<> <Navbar/> <Builder/> </>}></Route>
                   <Route  path='/schedule' element={<> <Navbar/> <Schedule/> </>}></Route>
                 </Route>
-                <Route path='/' element={<Login/> }></Route>
+                <Route path='/login' element={<Login/> }></Route>
+                <Route path='/' element={<Home/> }></Route>
               </Routes>
             </LocalizationProvider>
             </DbProvider>

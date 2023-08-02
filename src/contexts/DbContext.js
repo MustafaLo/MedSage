@@ -22,6 +22,7 @@ export function DbProvider({children}){
             days: medication.days,
             times: medication.times,
             note: medication.note,
+            completions: [],
             createdTimestamp: new Date()
         })
     }
@@ -40,6 +41,12 @@ export function DbProvider({children}){
         })
     }
 
+    const updateMedicationCompletion = (userID, medID, completion_times) => {
+        return updateDoc(doc(db, "user_information", userID, "medication_list", medID), {
+            completions: completion_times
+        })
+    }
+
     const getUserMedications = (userID) => {
         const medicationListRef = collection(db, 'user_information', userID, 'medication_list');
         const orderedQuery = query(medicationListRef, orderBy('createdTimestamp')); // Order the documents by timestamp
@@ -54,6 +61,7 @@ export function DbProvider({children}){
         addMedication,
         deleteMedication,
         updateMedication,
+        updateMedicationCompletion,
         getUserMedications
     }
 
