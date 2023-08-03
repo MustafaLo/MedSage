@@ -24,7 +24,7 @@ function App() {
                   <Route  path='/builder' element={<> <Navbar/> <Builder/> </>}></Route>
                   <Route  path='/schedule' element={<> <Navbar/> <Schedule/> </>}></Route>
                 </Route>
-                <Route path='/login' element={<Login/> }></Route>
+                <Route path='/login' element={<Login/>}></Route>
                 <Route path='/' element={<Home/> }></Route>
               </Routes>
             </LocalizationProvider>
