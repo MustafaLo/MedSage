@@ -40,7 +40,6 @@ const Schedule = () => {
     
         const eventObjects = snapshot.docs.flatMap((doc) => {
           const data = doc.data()
-          console.log(data)
 
           if(data.times.length == 0){
             return{
@@ -74,10 +73,6 @@ const Schedule = () => {
 
       initializeMedicationData()
     }, [])
-
-    useEffect(() => {
-      console.log(events)
-    }, [events])
 
 
     const validRange = (nowDate) => {
