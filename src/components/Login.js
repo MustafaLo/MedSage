@@ -27,13 +27,16 @@ const Login = () => {
         if(registerInformation.password != registerInformation.confirmPassword){
             setError('Passwords do not match.')
         }
+        else if (registerInformation.password.length < 6){
+            setError('Password too short')
+        }
         else{
             try{
                 setError('')
                 await signup(registerInformation.email, registerInformation.password)
                 navigate('/builder')
             } catch (err){
-                setError('An error ocurred signing up')
+                setError('An error ocurred signing up. Please check your fields')
             }
          
         }
@@ -45,13 +48,18 @@ const Login = () => {
             await login(email, password)
             navigate('/builder')
         } catch(err){
-            setError("An error occured loggin in")
+            setError("An error occured logging in")
         }
     }
 
     const handleSwitch = (register) => {
         setIsRegistering(register)
         setError('')
+        setEmail('')
+        setPassword('')
+        setRegisterInformation({...registerInformation, email: ''})
+        setRegisterInformation({...registerInformation, password: ''})
+        setRegisterInformation({...registerInformation, confirmPassword: ''})
     }
 
 
@@ -110,7 +118,7 @@ const Login = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
                                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
                                 </svg>
-                                <input type="email" placeholder='Type your email' onChange={(e) => setEmail(e.target.value)}/>
+                                <input type="email" placeholder='Type your email' value={email} onChange={(e) => setEmail(e.target.value)}/>
                             </div>
                         </div>
                         <div className="form">
@@ -119,7 +127,7 @@ const Login = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-lock-fill" viewBox="0 0 16 16">
                                     <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
                                 </svg>
-                                <input type="password" placeholder='Type your password' onChange={(e) => setPassword(e.target.value)}/>
+                                <input type="password" placeholder='Type your password' value={password} onChange={(e) => setPassword(e.target.value)}/>
                             </div>
                         </div>
 

@@ -5,7 +5,6 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 const Medication = forwardRef(({medID, medicationList, setMedicationList}, _ref) => {
 
-    
     const MUI_BLACK_THEME = createTheme({ palette: { primary: { main: "#000000" } } });
 
     const [dayClick, setDayClick] = useState({
@@ -88,16 +87,7 @@ const Medication = forwardRef(({medID, medicationList, setMedicationList}, _ref)
                 return med
             })
         )
-
-        //This is to ensure users cannot put more than 4 times
-        /*
-        if(tempMedicationTimes.length < 4 && (timeIndex + 1) >= tempMedicationTimes.length){
-            const temp = tempMedicationTimes.map((time, index) => index == timeIndex ? newTime : time)
-            setTempMedicationTimes([...temp, ''])
-        }
-        */
         
-
         setUpdated(true)
     }
 
@@ -112,9 +102,6 @@ const Medication = forwardRef(({medID, medicationList, setMedicationList}, _ref)
                 return med
             })
         )
-
-        console.log(tindex)
-        console.log(tempMedicationTimes)
 
         if(tempMedicationTimes.length > 1){
             setTempMedicationTimes(tempMedicationTimes.filter((time, key) => key !== tindex))
@@ -165,16 +152,9 @@ const Medication = forwardRef(({medID, medicationList, setMedicationList}, _ref)
 
     }
 
-    useEffect(() => {
-        console.log(tempMedicationTimes)
-
-    }, [tempMedicationTimes])
-
-
 
 
     const handleDayStatus = (id) => {
-        console.log(dayClick[id])
         if(dayClick[id] === 'day'){
             //setDayClick({...dayClick, [id]: 'day-clicked'})
             return 'ADD'
@@ -189,16 +169,9 @@ const Medication = forwardRef(({medID, medicationList, setMedicationList}, _ref)
         updateDayClickStatus()
     }, [medicationList.find(med => med.id == medID).days])
 
-    /*
     useEffect(() => {
         updateTimeClickStatus()
     }, [medicationList.find(med => med.id == medID).times])
-    */
-
-    useEffect(() => {
-        updateTimeClickStatus()
-    }, [medicationList.find(med => med.id == medID).times])
-
 
 
     return(

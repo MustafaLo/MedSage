@@ -124,11 +124,11 @@ const Schedule = () => {
     const renderInnerContent = (arg) => {
       return(
           <div>
-            <div class="event-info">
-              <div class="fc-list-event-title">
+            <div className="event-info">
+              <div className="fc-list-event-title">
                 <a>{arg.event.title}</a>
               </div>
-              <div class="checkbox">
+              <div className="checkbox">
                 <Checkbox
                   color='success'
                   onChange={(e) => recordCompletion(arg.event, e.target.checked)}
@@ -153,22 +153,9 @@ const Schedule = () => {
                     plugins={[listPlugin]} 
                     initialView='listWeek'
                     events={events}
-                    
-                    /*
-                    events={[
-                        {title: 'event1.', daysOfWeek: ['4'], startTime: '10:45:00', note: 'test1', color:'black'},
-                        {title: 'event2', daysOfWeek: ['3', '4'], startTime: '11:00:00', color:'black', note: 'Take with plenty of water'},
-                        {title: 'event2', daysOfWeek: ['3', '4'], startTime: '11:00:00', color: 'black', note: 'Only take two at a time'},
-                        {title: 'event2', daysOfWeek: ['3', '4'], startTime: '11:00:00', color: 'black', note: 'test2'},
-                        {title: 'event3', daysOfWeek: ['1'], startTime: '5:00:00', color:'black', note: 'test2'}, 
-                    ]}
-                    */
-
                     eventContent={createTooltip}
                     validRange={validRange}
                     allDayText={'Any'}
-
-
                 />   
             </div>
         </section>

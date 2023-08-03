@@ -51,26 +51,6 @@ const Builder = () => {
             prevMedicationList.filter((med) => med.id !== medID)
         )
 
-        /*
-        if(medicationList.length < 2){
-            const setMedDayClickStates = MED_REF.current.getSetDayClickStates()
-            const setMedTempTimeStates = MED_REF.current.getSetTempMedicationTimeStates()
-
-      
-            setMedDayClickStates({
-                'M': 'day',
-                'Tu': 'day',
-                'W': 'day',
-                'Th': 'day',
-                'F': 'day',
-                'Sa': 'day',
-                'Su': 'day'
-            })
-            setMedTempTimeStates([''])
-            setMedicationList([])
-        }
-        */
-
     }
 
 
@@ -88,11 +68,6 @@ const Builder = () => {
                 setUpdated(false)
         }
         }
-    }, [medicationList])
-
-    useEffect(() => {
-        console.log(medicationList)
-        console.log(delMedHoverState)
     }, [medicationList])
 
 
@@ -131,22 +106,17 @@ const Builder = () => {
 
             <div className='medicine-list'>
                 {medicationList.map((medication, index) => (
-                    <div className={"medication " + buzzOrFloatMed} 
-                        //onMouseOver={() => setDelMedHoverState(delMedHoverState.map((state, stateIndex) => stateIndex == index ? true : false))} 
-                        //onMouseOut={() => setDelMedHoverState(delMedHoverState.map((state, stateIndex) => stateIndex == index ? false : false))}>
-
+                    <div 
+                        className={"medication " + buzzOrFloatMed} 
                         onMouseOver={() => Object.keys(delMedHoverState).map((medID) => medID == medication.id ? setDelMedHoverState((prevState) => ({...prevState, [medID]:true})) : setDelMedHoverState((prevState) => ({...prevState, [medID]: false})))}
-                        onMouseOut={() => Object.keys(delMedHoverState).map((medID) => setDelMedHoverState((prevState) => ({...prevState, [medID] : false})))}>
-
-
+                        onMouseOut={() => Object.keys(delMedHoverState).map((medID) => setDelMedHoverState((prevState) => ({...prevState, [medID] : false})))}
+                        >
                             <Medication medID={medication.id} ref={MED_REF} medicationList={medicationList} setMedicationList={setMedicationList} />
                             {delMedHoverState[medication.id] && <FontAwesomeIcon onClick={() => handleDeleteMedication(medication.id)} className='del-med-btn' icon={faX} style={{color: "#f10410",}} onMouseOver={() => setBuzzOrFloatMed('hvr-buzz')} onMouseOut={() => setBuzzOrFloatMed('hvr-float')} />}
                     </div>
                 ))}
                 <FontAwesomeIcon onClick={handleAddMedication} className='add-med-btn hvr-pulse-grow' icon={faPlus} style={{color: "#000000",}}/>
             </div>
-
-        
 
 
         </section>

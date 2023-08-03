@@ -30,10 +30,10 @@ const Navbar = () => {
             <nav>
                 <ul>
                     <li>
-                        <Link to="/builder"><a href="">BUILDER</a></Link>
+                        <Link to="/builder"><span>BUILDER</span></Link>
                     </li>
                     <li>
-                        <Link to="/schedule"><a href="">SCHEDULE</a></Link>
+                        <Link to="/schedule"><span>SCHEDULE</span></Link>
                     </li>
 
                     <button className='logout' onClick={handleSignOut}>LOGOUT</button>

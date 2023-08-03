@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useContext} from 'react'
 import {db} from '../firebase/firebase.js'
 import { collection, setDoc, doc, getDocs, deleteDoc, updateDoc, orderBy, query} from "firebase/firestore"; 
 import { useAuth } from './AuthContext';

@@ -9,13 +9,13 @@
 
 }
 
-.navbar a{
+.navbar span{
     text-decoration: none;
     color: black;
-    margin-right: 30px;
+    margin-right: 60px;
 }
 
-.navbar a:hover{
+.navbar span:hover{
     text-decoration: underline;
 }
 
