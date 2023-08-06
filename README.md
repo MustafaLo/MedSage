@@ -1,1 +1,1 @@
-/Users/mustafalonandwala/Documents/Mustafa Lonandwala/Coding Projects/medsage/src/styles/logo.png
+![My Image](src/styles/logo.png)
