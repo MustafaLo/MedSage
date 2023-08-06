@@ -1,1 +1,1 @@
-![Logo](https://github.com/MustafaLo/MedSage/assets/57977880/f1938343-8328-4f2e-8b2d-5d96ae79fe12)
+![Logo](https://github.com/MustafaLo/MedSage/assets/57977880/421e8243-c025-4f63-8565-9286c4d67db0)
