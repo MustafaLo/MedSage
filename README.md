@@ -33,6 +33,9 @@ MedSage is a platform that empowers users to build and monitor their medication 
 - Text Message Reminders
 - And More? 👀
 
+## Motivation
+
+
 ## Setup and Installation
 You can create an account and start using MedSage [here](https://medsage.netlify.app/), or you can install it locally. To do so run
 ```bash
@@ -55,6 +58,10 @@ REACT_APP_authDomain=""
 REACT_APP_projectId=""
 etc...
 ```
+## Tech Stack
+MedSage was created using React, Material UI, Firebase, and FullCalendar
+
+
 
 
 
