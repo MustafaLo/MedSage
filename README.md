@@ -34,7 +34,7 @@ MedSage is a platform that empowers users to build and monitor their medication 
 - And More? 👀
 
 ## Motivation
-
+For all of my life, my grandparents have been on constant, strict medication schedules. In my family, I am the designated "medication guru" for them, keeping track of daily dosage requirements, refilling medication containers, and remembering complicated medication names (Talimogene Laherparepvec ???). Manually writing all of this information down was tiresome and other medication manager apps that I used weren't very intuitive. Thus MedSage was born 😁.
 
 ## Setup and Installation
 You can create an account and start using MedSage [here](https://medsage.netlify.app/), or you can install it locally. To do so run
@@ -58,8 +58,8 @@ REACT_APP_authDomain=""
 REACT_APP_projectId=""
 etc...
 ```
-## Tech Stack
-MedSage was created using React, Material UI, Firebase, and FullCalendar
+## Tech Stack 💻
+MedSage was created using React, Material UI, Firebase, and FullCalendar.
 
 
 
