@@ -42,6 +42,20 @@ You can create an account and start using MedSage [here](https://medsage.netlify
   npm start
 ```
 ### Enviornment Variables
+MedSage is integrated with Firebase and Firestore to complete an authentication flow and store user-specific medication information. As such, you will need to create an account on Firebase and add your apps configuration. Instruction on this can be found [here] (https://firebase.google.com/docs/web/setup).
+
+After this, create an env file and add your configuration to it
+```bash
+  touch .env
+```
+Make sure your keys are written in proper React format like this
+```bash
+REACT_APP_apiKey=""
+REACT_APP_authDomain=""
+REACT_APP_projectId=""
+etc...
+```
+
 
 
 
