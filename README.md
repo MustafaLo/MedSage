@@ -2,7 +2,7 @@
   <img src="https://github.com/MustafaLo/MedSage/assets/57977880/421e8243-c025-4f63-8565-9286c4d67db0"/>
 </p>
 
-Navigate through your Medication Schedules with Confidence
+💊 Navigate through your Medication Schedules with Confidence!
 
 
 # What is MedSage?
@@ -20,6 +20,12 @@ MedSage is a platform that empowers users to build and monitor their medication 
 <p align="center">
   <img src="https://github.com/MustafaLo/MedSage/assets/57977880/a595b1af-fc74-4699-ac59-6ea9e7b5dc62" width="85%"></img>
 </p>
+
+- Minimalistic Design
+- Detailed Medication Notes
+- Schedule Checklist
+- Text Message Reminders
+- And More? 👀
 
 
 
