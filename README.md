@@ -38,7 +38,11 @@ You can create an account and start using MedSage [here](https://medsage.netlify
 ```bash
   git clone https://github.com/MustafaLo/MedSage.git MedSage
   cd MedSage
+  npm install
+  npm start
 ```
+### Enviornment Variables
+
 
 
 
