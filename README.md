@@ -31,6 +31,9 @@ MedSage is a platform that empowers users to build and monitor their medication 
 - Text Message Reminders
 - And More? 👀
 
+## Setup and Installation
+
+
 
 
 
