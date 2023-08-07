@@ -34,7 +34,11 @@ MedSage is a platform that empowers users to build and monitor their medication 
 - And More? 👀
 
 ## Setup and Installation
-You can create an account and start using MedSage here: [Link](https://medsage.netlify.app/), or you can install it locally
+You can create an account and start using MedSage [here](https://medsage.netlify.app/), or you can install it locally. To do so run
+```bash
+  git clone https://github.com/MustafaLo/MedSage.git MedSage
+  cd MedSage
+```
 
 
 
