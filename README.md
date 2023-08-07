@@ -16,6 +16,10 @@ MedSage is a platform that empowers users to build and monitor their medication 
   <img src="https://github.com/MustafaLo/MedSage/assets/57977880/8a92a39e-5f2f-4a3b-ac8f-253e3f4e8749" width="85%"></img>
 </p>
 
+- Dynamic Weekly Medication Schedule
+
+
+
 
 
 
