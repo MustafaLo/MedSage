@@ -1,6 +1,10 @@
 <p align="center">
   <img src="https://github.com/MustafaLo/MedSage/assets/57977880/421e8243-c025-4f63-8565-9286c4d67db0"/>
 </p>
+<p align="center">
+  <img src="https://api.netlify.com/api/v1/badges/fb37c3dd-78d5-4385-b1c4-a111b8dd8e14/deploy-status"/>
+</p>
+
 
 💊 Navigate through your Medication Schedules with Confidence!
 
