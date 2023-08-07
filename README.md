@@ -13,6 +13,6 @@ MedSage is a platform that empowers users to build and monitor their medication 
 
 - Medication Component Builder
 <p align="center">
-  <img width="1430" alt="Screen Shot 2023-08-06 at 7 54 04 PM" src="https://github.com/MustafaLo/MedSage/assets/57977880/d9cf3230-b225-4b82-958d-188b07101abf">
+  <img src="https://github.com/MustafaLo/MedSage/assets/57977880/817a3d0d-75c2-4dfc-a472-b75f39f5727f"></img>
 </p>
 
